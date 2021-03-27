@@ -6,7 +6,7 @@
     <img src="{{product.productImage}}" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">{{product.productName}}</h5>
-        <p class="card-text">{{product.productPrice}}</p>
+        <p class="card-text">$ {{product.productPrice}}</p>
         <p class="card-text">{{product.productDetails}}</p>
         {% if user.is_authenticated %}
         <form action="{% url 'addToCart' %}" method="POST">
