@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for product in products %}
+<div class="card" style="width: 18rem;">
+    <img src="{{product.productImage}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{product.productName}}</h5>
+        <p class="card-text">{{product.productPrice}}</p>
+        <p class="card-text">{{product.productDetails}}</p>
+        {% if user.is_authenticated %}
+        <form action="{% url 'addToCart' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" hidden name="productId" value="{{product.id}}">
+            <input type="submit" class="btn btn-primary" value="add to cart">
+        </form>
+        {% else %}
+        <p class="card-text">please login to buy</p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+

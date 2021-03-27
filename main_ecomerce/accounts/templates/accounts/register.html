@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Register here</h1>
+        <form action="{% url 'account_register' %}" method="POST">
+            {% csrf_token %}
+            First Name:<input type="text" name="first_name" required><br>
+            Last Name:<input type="text" name="last_name" required><br>
+            Username:<input type="text" name="username" required><br>
+            Email:<input type="email" name="email" required><br>
+            Password:<input type="password" name="password" required><br>
+            Confirm Password:<input type="password" name="confirm_password" required><br>
+            <input type="submit" value="Submit">
+
+        </form>
+
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+
+
+    {% for i in user %}
+        <p>{{i.id}}</p>
+        <p>{{i.username}}</p>
+        <p>{{i.email}}</p>
+    {% endfor %}
+
+{% endblock %}
